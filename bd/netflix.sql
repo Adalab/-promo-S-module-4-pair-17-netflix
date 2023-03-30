@@ -1,137 +1,130 @@
--- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
---
--- Host: 127.0.0.1    Database: netflix
--- ------------------------------------------------------
--- Server version	8.0.32
+CREATE DATABASE NETFLIX; 
+USE NETFLIX;
+CREATE TABLE movies(
+id int auto_increment not null primary key, 
+title varchar(45) not null,
+gender varchar(45) not null, 
+image varchar(1000) not null,
+category varchar(45) not null,
+year int 
+); 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE TABLE Users(
+idUsers int auto_increment not null primary key,
+user varchar(45) not null,
+password varchar(45) not null,
+name varchar(45) not null,
+email varchar(45) not null,
+plan_details varchar(45) not null
+); 
 
---
--- Table structure for table `actors`
---
+CREATE TABLE Actors(
+idActor int auto_increment not null primary key,
+user varchar(45) not null,
+name varchar(45) not null,
+lastname varchar(45) not null,
+country varchar(45) not null,
+birthday date
+); 
 
-DROP TABLE IF EXISTS `actors`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `actors` (
-  `idActor` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  `lastname` varchar(45) NOT NULL,
-  `country` varchar(45) NOT NULL,
-  `birthday` date DEFAULT NULL,
-  `image` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idActor`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+INSERT INTO movies (title, gender,image,category,year) VALUES
+ ("Pulp Fiction", "Crimen","https://pics.filmaffinity.com/pulp_fiction-210382116-large.jpg", "Top 10", "1994"), 
+("La vita è bella", "Comedia","https://pics.filmaffinity.com/la_vita_e_bella-646167341-mmed.jpg", "Top 10", "1996"), 
+("Forrest Gump", "Comedia", "https://pics.filmaffinity.com/forrest_gump-212765827-mmed.jpg", "Top 10", "1994"); 
 
---
--- Dumping data for table `actors`
---
+SELECT * from movies; 
+INSERT INTO users (user, password, name, email, plan_details) VALUES
+("laura_dev", "laura", "Laura", "laura@gmail.com", "Standard"),
+("maria_dev", "maria", "María", "maria@gmail.com", "Standard"),
+("ester_dev", "ester", "Ester", "ester@gmail.com", "Standard"); 
 
-LOCK TABLES `actors` WRITE;
-/*!40000 ALTER TABLE `actors` DISABLE KEYS */;
-INSERT INTO `actors` VALUES (1,'Tom','Hanks','Estados Unidos','1956-06-09',NULL),(2,'Roberto','Benigni','Italia','1952-10-27',NULL),(3,'John ','Travolta','Estados Unidos','1954-02-18',NULL);
-/*!40000 ALTER TABLE `actors` ENABLE KEYS */;
-UNLOCK TABLES;
+SELECT * from users; 
 
---
--- Table structure for table `medicina`
---
+INSERT INTO Actors (name, lastname, country, birthday) VALUES
+("Tom", "Hanks", "Estados Unidos", "1956-06-09"); 
 
-DROP TABLE IF EXISTS `medicina`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `medicina` (
-  `idMedicina` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) DEFAULT NULL,
-  `descripcion` varchar(250) DEFAULT NULL,
-  `precio` float DEFAULT NULL,
-  PRIMARY KEY (`idMedicina`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+SELECT * from Actors; 
+SELECT * from Actors; 
 
---
--- Dumping data for table `medicina`
---
+SELECT * from movies; 
 
-LOCK TABLES `medicina` WRITE;
-/*!40000 ALTER TABLE `medicina` DISABLE KEYS */;
-INSERT INTO `medicina` VALUES (1,'paracetamol','para la fiebre',5.5),(2,'ibuprofeno','para el dolor',15.8),(3,'vitamina c','vitaminas',20),(4,'desloratadina','para la alergia',3.7),(5,'loratadina','para la alergia',9.3),(6,'el milagro','quita todo lo que tengas',35.9),(7,'mas power','energizante',17.5);
-/*!40000 ALTER TABLE `medicina` ENABLE KEYS */;
-UNLOCK TABLES;
+SELECT title, gender FROM movies
+WHERE year > "1990"; 
 
---
--- Table structure for table `movies`
---
+SELECT * from movies; 
 
-DROP TABLE IF EXISTS `movies`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `movies` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) NOT NULL,
-  `gender` varchar(45) NOT NULL,
-  `image` varchar(1000) NOT NULL,
-  `category` varchar(45) NOT NULL,
-  `year` int DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+SELECT title FROM movies 
+WHERE category = "Top 10"; 
 
---
--- Dumping data for table `movies`
---
+UPDATE movies 
+SET year="1997"
+WHERE id=2; 
 
-LOCK TABLES `movies` WRITE;
-/*!40000 ALTER TABLE `movies` DISABLE KEYS */;
-INSERT INTO `movies` VALUES (1,'Pulp Fiction','Crimen','https://pics.filmaffinity.com/pulp_fiction-210382116-large.jpg','Top 10',1994),(2,'La vita è bella','Comedia','https://pics.filmaffinity.com/la_vita_e_bella-646167341-mmed.jpg','Top 10',1997),(3,'Forrest Gump','Comedia','https://pics.filmaffinity.com/forrest_gump-212765827-mmed.jpg','Top 10',1994);
-/*!40000 ALTER TABLE `movies` ENABLE KEYS */;
-UNLOCK TABLES;
+SELECT * from movies; 
 
---
--- Table structure for table `users`
---
+SELECT * from Actors; 
 
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `users` (
-  `idUsers` int NOT NULL AUTO_INCREMENT,
-  `user` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `name` varchar(45) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  `plan_details` varchar(45) NOT NULL,
-  PRIMARY KEY (`idUsers`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+SELECT name from Actors
+WHERE birthday BETWEEN "1950-01-01" AND "1960-01-01"; 
 
---
--- Dumping data for table `users`
---
+SELECT name, lastname from Actors 
+WHERE country="Estados Unidos"; 
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'laura_dev','laura','Laura','laura@gmail.com','Standard'),(3,'ester_dev','ester','Ester','ester@gmail.com','Standard');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+SELECT * from users; 
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+SELECT user from users
+WHERE plan_details="Standard"; 
 
--- Dump completed on 2023-03-28 11:05:13
+DELETE FROM users
+WHERE name LIKE "M%";  
+
+ALTER TABLE Actors 
+ADD column image varchar(45); 
+
+
+INSERT INTO Actors (name, lastname, country, birthday) VALUES
+("Tom", "Hanks", "Estados Unidos", "1956-06-09"); 
+
+INSERT INTO Actors (name, lastname, country, birthday) VALUES
+("Roberto", "Benigni", "Italia", "1952-10-27"); 
+
+DELETE FROM Actors user;
+
+CREATE TABLE rel_movies_users (
+id int auto_increment not null primary key,
+fkIdUser int not null,
+foreign key (fkIdUser) references Users (idUsers),
+fkIdMovie int not null,
+foreign key (fkIdMovie) references movies (id)
+);
+
+SELECT * FROM rel_movies_users;
+
+INSERT INTO rel_movies_users (fkIdUser, fkIdMovie) VALUES 
+(1, 1), (1, 2), (2, 2);
+
+ALTER TABLE rel_movies_users
+ADD column score FLOAT;
+
+UPDATE rel_movies_users SET score = 10 WHERE fkIdUser = 1 AND fkIdMovie = 1;
+UPDATE rel_movies_users SET score = 8.5 WHERE fkIdUser = 1 AND fkIdMovie = 2;
+UPDATE rel_movies_users SET score = 9 WHERE fkIdUser = 2 AND fkIdMovie = 2;
+
+
+DELETE FROM rel_movies_users 
+WHERE id > 3;
+
+CREATE TABLE rel_movies_actors (
+id int auto_increment not null primary key,
+fkIdActor int not null,
+foreign key (fkIdActor) references Actors (idActor),
+fkIdMovie int not null,
+foreign key (fkIdMovie) references movies (id)
+);
+
+SELECT * FROM rel_movies_actors;
+
+INSERT INTO rel_movies_actors (fkIdActor, fkIdMovie) VALUES 
+(1, 1), (1, 2), (2, 2);
+
+
