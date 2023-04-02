@@ -42,7 +42,7 @@ mysql
   app.get('/movies', (req, res) => {
     console.log('Pidiendo a la base de datos información de los empleados.');
     connection
-      .query('SELECT * FROM movies')
+      .query('SELECT * FROM netflix')
       .then(([results, fields]) => {
         console.log('Información recuperada:');
         results.forEach((result) => {

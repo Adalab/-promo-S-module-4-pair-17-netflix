@@ -39,20 +39,3 @@ mysql
     console.error('Error de configuración: ' + err.stack);
   });
 
-  app.get('/movies', (req, res) => {
-    console.log('Pidiendo a la base de datos información de los empleados.');
-    connection
-      .query('SELECT * FROM movies')
-      .then(([results, fields]) => {
-        console.log('Información recuperada:');
-        results.forEach((result) => {
-          console.log(result);
-        });
-  
-        res.json(results);
-      })
-      .catch((err) => {
-        throw err;
-      });
-  });
-
