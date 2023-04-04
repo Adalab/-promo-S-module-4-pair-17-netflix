@@ -42,19 +42,48 @@ mysql
 
 server.get("/movies", (req, res) => {
   console.log("Pidiendo a la base de datos información de los empleados.");
-  connection
-    .query("SELECT * FROM movies")
-    .then(([results, fields]) => {
-      console.log("Información recuperada:");
-      results.forEach((result) => {
-        console.log(result);
+  const genreFilterParam = req.query.genre;
+  const sortFilterParam = req.query.sort;
+  if (genreFilterParam === "") {
+    connection
+      .query(
+        `SELECT * from movies ORDER BY title ${
+          sortFilterParam === "asc" ? "asc" : "desc"
+        }`
+      )
+      .then(([results, fields]) => {
+        console.log("Información recuperada:");
+        results.forEach((result) => {
+          console.log(result);
+        });
+        res.json({
+          success: true,
+          movies: results,
+        });
+      })
+      .catch((err) => {
+        throw err;
       });
-      res.json({
-        success: true,
-        movies: results,
+  } else {
+    connection
+      .query(
+        `SELECT * from movies WHERE gender = ? ORDER BY title  ${
+          sortFilterParam === "asc" ? "asc" : "desc"
+        }`,
+        [genreFilterParam]
+      )
+      .then(([results, fields]) => {
+        console.log("Información recuperada:");
+        results.forEach((result) => {
+          console.log(result);
+        });
+        res.json({
+          success: true,
+          movies: results,
+        });
+      })
+      .catch((err) => {
+        throw err;
       });
-    })
-    .catch((err) => {
-      throw err;
-    });
+  }
 });
