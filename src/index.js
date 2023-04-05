@@ -87,3 +87,32 @@ server.get("/movies", (req, res) => {
       });
   }
 });
+
+server.post("/login", (req, res) => {
+  console.log(req.body);
+  const mailInput = req.body.email;
+  const passwordInput = req.body.password;
+
+  connection
+    .query(`SELECT idUsers from users WHERE email=? AND password=?`, [
+      mailInput,
+      passwordInput,
+    ])
+    .then(([results, fields]) => {
+      console.log(result);
+      if (idUsers) {
+        res.json({
+          success: true,
+          userId: "id_de_la_usuaria_encontrada",
+        });
+      } else {
+        res.json({
+          success: false,
+          errorMessage: "Usuaria/o no encontrada/o",
+        });
+      }
+    })
+    .catch((err) => {
+      throw err;
+    });
+});
