@@ -37,32 +37,32 @@ Por favor marca a continuación los ejercicios que hayáis terminado:
 
 **4.6 Express JS II:**
 
-- [ ] 1. Filtrar por género // ruta? 
-- [ ] 2. Ordenar por nombre
-- [ ] 3. Login
+- [X] 1. Filtrar por género // ruta? 
+- [X] 2. Ordenar por nombre
+- [X] 3. Login
 - [ ] 4. Bonus: Mantén logueada a la usuaria
 
 **4.7 Express JS III:**
 
-- [ ] 1. Servidor de estáticos para React
-- [ ] 2. Servidor de estáticos para las fotos
-- [ ] 3. Crea un motor de plantillas
+- [X] 1. Servidor de estáticos para React
+- [X] 2. Servidor de estáticos para las fotos
+- [X] 3. Crea un motor de plantillas
 
-  - [ ] 1. Obtener el id de la película a renderizar
-  - [ ] 2. Obtener la película
-  - [ ] 3. Renderiza una página cualquiera
-  - [ ] 4. Renderiza la película
-  - [ ] 5. Añade estilos
+  - [X] 1. Obtener el id de la película a renderizar
+  - [X] 2. Obtener la película
+  - [X] 3. Renderiza una página cualquiera
+  - [X] 4. Renderiza la película
+  - [X] 5. Añade estilos
 
 **4.8 Mongo I:**
 
-- [ ] 1. Configura MongoDB Atlas
-- [ ] 2. Crea la bases de datos Netflix
+- [X] 1. Configura MongoDB Atlas
+- [X] 2. Crea la bases de datos Netflix
 
 **4.9 Mongo II:**
 
-- [ ] 1. Conexión con la bases de datos de MongoDB
-- [ ] 2. Modelos para las colecciones
+- [X] 1. Conexión con la bases de datos de MongoDB
+- [X] 2. Modelos para las colecciones
 - [ ] 3. Listado de películas
 - [ ] 4. Ordena por nombre
 

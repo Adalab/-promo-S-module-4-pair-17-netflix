@@ -143,3 +143,19 @@ server.use(express.static(staticCssPathWeb));
 // http://localhost:3000 - Modo desarrollo
 // http://localhost:4000 - Modo producción
 // desarrollo = > producción npm run publish-react
+
+// Mongo DB
+
+const dbConnect = require("../config/connection.js");
+dbConnect();
+
+const Movie = require("../models/movies");
+
+server.get("/movies_all_mongo", (req, res) => {
+  const query = Movie.find({}).then((docs) => {
+    res.json({
+      success: true,
+      movies: docs,
+    });
+  });
+});
