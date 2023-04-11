@@ -27,7 +27,7 @@
 
 const getMoviesFromApi = (params) => {
   console.log(params);
-  return fetch(`//localhost:4000/movies_all_mongo?genre=${params.genre}&sort=${params.sort}`, {
+  return fetch(`//localhost:4000/movies_all_mongo?genre=${params.genre}`, {
     method: "GET",
     headers: { "content-type": "application/json" },
   })

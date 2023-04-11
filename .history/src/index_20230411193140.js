@@ -162,7 +162,7 @@ server.get("/movies_all_mongo", (req, res) => {
       });
     });
   }else{
-  const query = Movie.find({genre: {$eq:genreMovie}}).sort({title:sortMovie}).then((docs) => {
+  const query = Movie.find({genre: {$eq:genreMovie}}).then((docs) => {
     res.json({
       success: true,
       movies: docs,
@@ -172,13 +172,13 @@ server.get("/movies_all_mongo", (req, res) => {
 });
 
 //MongoDb III - 1.2 y 1.3
-const Favorite = require("../models/favorites");
-server.post('/favorites-add', (req, res) => {
- const query = Movies.find({}, (err, docs) => {
-   if (err) {
-     console.log(err);
-   } else {
-     console.log(docs);
-   }
- });
-});
+//const Favorite = require("../models/favorites");
+//server.post('/favorites-add', (req, res) => {
+//  const query = Movies.find({}, (err, docs) => {
+//    if (err) {
+//      console.log(err);
+//    } else {
+//      console.log(docs);
+//    }
+//  });
+//});

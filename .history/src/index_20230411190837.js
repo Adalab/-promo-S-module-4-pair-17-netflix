@@ -152,33 +152,23 @@ dbConnect();
 const Movie = require("../models/movies");
 
 server.get("/movies_all_mongo", (req, res) => {
-  const genreMovie = req.query.genre;
-  const sortMovie = req.query.sort;
-  if(genreMovie === "") {
-    const query = Movie.find({}).sort({title:sortMovie}).then((docs) => {
-      res.json({
-        success: true,
-        movies: docs,
-      });
-    });
-  }else{
-  const query = Movie.find({genre: {$eq:genreMovie}}).sort({title:sortMovie}).then((docs) => {
+  const {genreMovie} = req.params.genre;
+  const query = Movie.find({}).then((docs) => {
     res.json({
       success: true,
       movies: docs,
     });
   });
-}
 });
 
 //MongoDb III - 1.2 y 1.3
-const Favorite = require("../models/favorites");
-server.post('/favorites-add', (req, res) => {
- const query = Movies.find({}, (err, docs) => {
-   if (err) {
-     console.log(err);
-   } else {
-     console.log(docs);
-   }
- });
-});
+//const Favorite = require("../models/favorites");
+//server.post('/favorites-add', (req, res) => {
+//  const query = Movies.find({}, (err, docs) => {
+//    if (err) {
+//      console.log(err);
+//    } else {
+//      console.log(docs);
+//    }
+//  });
+//});
