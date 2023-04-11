@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const dbConnect = () => {
   const user = "AlmuLloret";
-  const pass = "fzGPozzHP8usn2FF";
+  const pass = "67H0rjSKczx1idsx";
   const dbName = "Netflix";
 
-  const uri = `mongodb+srv://${user}:${pass}@cluster0.lpdiwwg.mongodb.net/${dbName}?retryWrites=true&w=majority`;
+  const uri = ` mongodb+srv://AlmuLloret:67H0rjSKczx1idsx@cluster0.lpdiwwg.mongodb.net/Netflix?retryWrites=true&w=majority`;
 
   // const uri = `mongodb+srv://${user}:${pass}@cluster0.lpdiwwg.mongodb.net/${dbName}?retryWrites=true&w=majority`;
 

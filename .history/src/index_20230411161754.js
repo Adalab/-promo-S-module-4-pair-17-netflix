@@ -152,8 +152,8 @@ dbConnect();
 const Movie = require("../models/movies");
 
 server.get("/movies_all_mongo", (req, res) => {
-  const {genreMovie} = req.params.genre;
-  const query = Movie.find({genre: {$eq:genreMovie}}).then((docs) => {
+  const {genreMovie} = req.params;
+  const query = Movie.find({genre: genreMovie}).then((docs) => {
     res.json({
       success: true,
       movies: docs,

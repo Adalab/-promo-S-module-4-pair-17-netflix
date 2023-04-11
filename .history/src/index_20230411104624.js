@@ -152,23 +152,10 @@ dbConnect();
 const Movie = require("../models/movies");
 
 server.get("/movies_all_mongo", (req, res) => {
-  const {genreMovie} = req.params.genre;
-  const query = Movie.find({genre: {$eq:genreMovie}}).then((docs) => {
+  const query = Movie.find({}).then((docs) => {
     res.json({
       success: true,
       movies: docs,
     });
   });
 });
-
-//MongoDb III - 1.2 y 1.3
-//const Favorite = require("../models/favorites");
-//server.post('/favorites-add', (req, res) => {
-//  const query = Movies.find({}, (err, docs) => {
-//    if (err) {
-//      console.log(err);
-//    } else {
-//      console.log(docs);
-//    }
-//  });
-//});
