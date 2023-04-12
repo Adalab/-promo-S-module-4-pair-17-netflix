@@ -150,35 +150,57 @@ const dbConnect = require("../config/connection");
 dbConnect();
 
 const Movie = require("../models/movies");
+const User = require("../models/users");
 
 server.get("/movies_all_mongo", (req, res) => {
   const genreMovie = req.query.genre;
   const sortMovie = req.query.sort;
-  if(genreMovie === "") {
-    const query = Movie.find({}).sort({title:sortMovie}).then((docs) => {
-      res.json({
-        success: true,
-        movies: docs,
+  if (genreMovie === "") {
+    const query = Movie.find({})
+      .sort({ title: sortMovie })
+      .then((docs) => {
+        res.json({
+          success: true,
+          movies: docs,
+        });
       });
-    });
-  }else{
-  const query = Movie.find({genre: {$eq:genreMovie}}).sort({title:sortMovie}).then((docs) => {
-    res.json({
-      success: true,
-      movies: docs,
-    });
-  });
-}
+  } else {
+    const query = Movie.find({ genre: { $eq: genreMovie } })
+      .sort({ title: sortMovie })
+      .then((docs) => {
+        res.json({
+          success: true,
+          movies: docs,
+        });
+      });
+  }
 });
 
-//MongoDb III - 1.2 y 1.3
 const Favorite = require("../models/favorites");
-server.post('/favorites-add', (req, res) => {
- const query = Movies.find({}, (err, docs) => {
-   if (err) {
-     console.log(err);
-   } else {
-     console.log(docs);
-   }
- });
+server.post("/favorites-add", (req, res) => {
+  query = Movie.find({})
+    .then((docs) => console.log(docs))
+    .catch((error) => console.log(error));
+
+  query = User.find({})
+    .then((docs) => console.log(docs))
+    .catch((error) => console.log(error));
+
+  let idOneMovie = "6430220455584cb2cab2c5a7";
+  let idOneUser = "6430254055584cb2cab2c5ad";
+  const favorite = new Favorite({
+    users: idOneUser,
+    movies: idOneMovie,
+    score: req.body.score,
+  });
+  favorite.save().then((response) => res.json(response));
+});
+
+// populate
+server.get("/favorites-list/:idUser", (req, res) => {
+  console.log(req.params.idUser);
+  Favorite.find({ users: req.params.idUser })
+    .populate("movies") // para filtrar hacer un map
+    .then((docs) => res.json(docs))
+    .catch((error) => console.log(error));
 });
